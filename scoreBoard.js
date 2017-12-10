@@ -1,12 +1,14 @@
 //should have 7 trys 
 //will win if 3 words are answered
 
-var scoreBoard = function(){
-	this.score = 0,
-
-	var addScore = function(){
-		this.score =+1;
+var ScoreBoard = {
+	score: 0,
+	tries: 7,
+	addScore: function(){
+		return this.score =+1;
+	},
+	subtractTries: function(){
+		this.tries = this.tries - 1;
 	}
 }
-
-module.exports= scoreBoard;
+module.exports= ScoreBoard;

@@ -1,6 +1,6 @@
 var fs = require("file-system");
 
-var word ={
+var Word ={
 	guessWord:null,
 	readTxtFile: function(){
 		var data = fs.readFileSync("wordsToGuess.txt", "utf-8");
@@ -23,4 +23,4 @@ var word ={
 	}
 }
 
-module.exports = word;
+module.exports = Word;

@@ -1,25 +1,37 @@
 // this will contain the logic of the game
 var prompt = require('prompt');
+var Word = require("./word.js");
+var ScoreBoard = require("./scoreBoard.js");
 prompt.start();
+play();
+var userInput = []; // this will store the user inputs
 
 function play(){
-	var word = require("./word.js");
-	guessThisWord = word.readTxtFile();
+	guessThisWord = Word.readTxtFile();
 	display();
 }
 
 function display(){
-	if !(guessThisWord.includes("_")){
-		var scoreBoard = require("./scoreBoard.js");
-		scoreBoard.addScore();
-	}
-	console.log("Guess this word: " + guessThisWord);
-	getUserInput();
-	console.log(guessWord);
+		console.log("\nScore: " + ScoreBoard.score);
+		console.log("\nTRIES: " + ScoreBoard.tries);
+		
+		console.log("Guess this word: " + guessThisWord);
+		getUserInput();
+		userInput =[];
+		
 }
 
 
-var userInput = []; // this will store the user inputs
+function checker(){
+	if (!(guessThisWord.includes("_"))){
+		console.log(ScoreBoard.addScore());
+		console.log("Score" + ScoreBoard.score);
+		console.log("TRIES" + ScoreBoard.tries);
+		play();
+	} else if (ScoreBoard.tries === 0){
+		console.log("Game over");
+	}
+}
 
 function getUserInput(){ // this will get userInput and display the letter if its correct 
 	prompt.get(["Guess"], function(err,result){
@@ -28,17 +40,16 @@ function getUserInput(){ // this will get userInput and display the letter if it
 			console.log("---------> You entered that letter. Try again <-------- \n");
 		} else {  
 			userInput.push(userAnswer);
+			ScoreBoard.subtractTries();
 		}
-
-		if (guessWord.includes(userAnswer)){
-			// console.log(true);
-			var pos = guessWord.indexOf(userAnswer);
-			guessThisWord[pos] = userAnswer;
-			display();
-
-		} else{
-			console.log(guessWord);
+		for (var i = 0; i < guessWord.length; i++){
+			if(guessWord[i] === userAnswer){
+				guessThisWord[i] = userAnswer;	
+			}
 		}
+		
+		display();
+		checker();
 	})
 }
 

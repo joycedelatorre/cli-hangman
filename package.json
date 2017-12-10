@@ -1,0 +1,22 @@
+{
+  "name": "cli-hangman",
+  "version": "1.0.0",
+  "description": "",
+  "main": "letter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joycedelatorre/cli-hangman.git"
+  },
+  "author": "Joyce",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joycedelatorre/cli-hangman/issues"
+  },
+  "homepage": "https://github.com/joycedelatorre/cli-hangman#readme",
+  "dependencies": {
+    "prompt": "^1.0.0"
+  }
+}

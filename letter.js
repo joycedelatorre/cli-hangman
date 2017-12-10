@@ -3,31 +3,39 @@ var prompt = require('prompt');
 var Word = require("./word.js");
 var ScoreBoard = require("./scoreBoard.js");
 prompt.start();
+
 play();
 var userInput = []; // this will store the user inputs
 
 function play(){
 	guessThisWord = Word.readTxtFile();
+	ScoreBoard.tries = 7;
+	console.log("-----New Guess--------");
 	display();
 }
 
 function display(){
-		console.log("\nScore: " + ScoreBoard.score);
-		console.log("\nTRIES: " + ScoreBoard.tries);
-		
-		console.log("Guess this word: " + guessThisWord);
-		getUserInput();
-		userInput =[];
-		
+	console.log("Score: " + ScoreBoard.score);
+	console.log("TRIES: " + ScoreBoard.tries);
+
+	console.log("Guess this word: " + guessThisWord);
+	getUserInput();
 }
 
 
 function checker(){
 	if (!(guessThisWord.includes("_"))){
 		console.log(ScoreBoard.addScore());
+		//prompt.stop();
 		console.log("Score" + ScoreBoard.score);
 		console.log("TRIES" + ScoreBoard.tries);
-		play();
+		// if(ScoreBoard.score < 3){
+		// 	//play();
+		// } else {
+			// prompt.stop();
+		console.log("you win!");
+		return;
+		//}
 	} else if (ScoreBoard.tries === 0){
 		console.log("Game over");
 	}
@@ -38,6 +46,7 @@ function getUserInput(){ // this will get userInput and display the letter if it
 		var userAnswer = result.Guess.toLowerCase();
 		if (userInput.includes(userAnswer)){
 			console.log("---------> You entered that letter. Try again <-------- \n");
+			ScoreBoard.subtractTries();
 		} else {  
 			userInput.push(userAnswer);
 			ScoreBoard.subtractTries();
@@ -47,11 +56,25 @@ function getUserInput(){ // this will get userInput and display the letter if it
 				guessThisWord[i] = userAnswer;	
 			}
 		}
-		
 		display();
 		checker();
 	})
+
+		
 }
+
+// prompt.stop = function () {
+//     if (prompt.stopped || !prompt.started) {
+//         return;
+//     }
+ 
+//     stdin.destroy();
+//     prompt.emit('stop');
+//     prompt.stopped = true;
+//     prompt.started = false;
+//     prompt.paused = false;
+//     return prompt;
+// }
 
 
 //should have a checker function 

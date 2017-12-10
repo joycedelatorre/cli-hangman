@@ -9,7 +9,7 @@ var Word ={
 		var dataArr = data.split(",");
 		//console.log(dataArr);
 		var randomPosition = Math.floor((Math.random()*dataArr.length));
-		console.log(randomPosition);
+		// console.log(randomPosition);
 		guessWord = dataArr[randomPosition];
 		//console.log(guessWord);
 		var blankArray =[]
@@ -20,6 +20,9 @@ var Word ={
 				blankArray.push("_");
 		}
 		return blankArray;
+	},
+	letterExist: function(){
+		
 	}
 }
 

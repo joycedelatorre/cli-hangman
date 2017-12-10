@@ -1,21 +1,27 @@
 var fs = require("file-system");
 
-var readTxtFile = function(){
-	fs.readFile("wordsToGuess.txt", "utf-8", function(error,data){
-		if (error){
-			return console.log(error);
-		}
-		console.log("READ DATA " + data);
-		var dataArr = data.split(",");
-		console.log(dataArr);
-		var randomPosition = Math.floor((Math.random()*dataArr.length)+1);
-		console.log(randomPosition);
+var word ={
+	guessWord:null,
 
-		// for(var i =0; i< dataArr.length; i++){
-		// 	console.log(dataArr[i]);
-		// }
-	});
+	readTxtFile: function(){
+		var data = fs.readFileSync("wordsToGuess.txt", "utf-8");
+		//console.log("READ DATA " + data);
+		data = data.trim();
+		var dataArr = data.split(",");
+		//console.log(dataArr);
+		var randomPosition = Math.floor((Math.random()*dataArr.length)+1);
+		//console.log(randomPosition);
+		this.guessWord = dataArr[randomPosition];
+		//console.log(guessWord);
+		var blankArray =[]
+		for(var i=0; i< this.guessWord.length; i++){
+			if(this.guessWord[i] === " "){
+				blankArray.push(" ");
+			} 
+				blankArray.push("_");
+		}
+		return "Guess this word: " + blankArray.join();
+	}
 }
 
-//module.exports = {readTxtFile};
-readTxtFile();
+module.exports = word;

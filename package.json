@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/joycedelatorre/cli-hangman#readme",
   "dependencies": {
+    "file-system": "^2.2.2",
     "prompt": "^1.0.0"
   }
 }

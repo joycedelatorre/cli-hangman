@@ -1,8 +1,8 @@
 var fs = require("file-system");
 
-var Word ={
-	guessWord:null,
-	readTxtFile: function(){
+var Word = function() {
+	
+	
 		var data = fs.readFileSync("wordsToGuess.txt", "utf-8");
 		//console.log("READ DATA " + data);
 		data = data.trim();
@@ -12,18 +12,7 @@ var Word ={
 		// console.log(randomPosition);
 		guessWord = dataArr[randomPosition];
 		//console.log(guessWord);
-		var blankArray =[]
-		for(var i=0; i<guessWord.length; i++){
-			if(guessWord[i] === " "){
-				blankArray.push(" ");
-			} 
-				blankArray.push("_");
-		}
-		return blankArray;
-	},
-	letterExist: function(){
-		
-	}
+		this.word = guessWord;
 }
 
 module.exports = Word;

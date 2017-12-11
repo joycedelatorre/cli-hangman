@@ -1,9 +1,8 @@
 // this will contain the logic of the game
-var prompt = require('prompt');
 var Word = require("./word.js");
 var Letter = require("./letter.js");
 var ScoreBoard = require("./scoreBoard.js");
-
+var prompt = require('prompt');
 var word = new Word();
 console.log(word.word);
 var letter = new Letter(word.word);
@@ -12,11 +11,14 @@ var scoreBoard = new ScoreBoard();
 
  // this will get userInput and display the letter if its correct 
  function checker(){
+ 	//var userAnswer = prompt("Guess ");
 	prompt.get(["Guess"], function(err,result){
+		//console.log(result);
 		if (scoreBoard.tries === 0 ){
-			return;
+			// return;
+			//here goes code that calls playAgain function
 		}
-		var userAnswer = result.Guess.toLowerCase();
+		userAnswer = result.Guess.toLowerCase();
 		console.log(userAnswer);
 		var guessedRight = letter.guessLetter(userAnswer);
 		console.log(letter.wordUnderScores);
@@ -35,11 +37,14 @@ var scoreBoard = new ScoreBoard();
 					// 	scoreBoard = new ScoreBoard();
 					// 	word = new Word();
 					// 	letter = new Letter(word.word);
-					// }
-
-			
+					// }			
 		}
 		// console.log(guessedRight);
+	checker();
+
+	});
+
+}
 
 function playAgain(){
 	prompt.get(["Would you like to play again? yes/no"], function(err,result){
@@ -48,7 +53,7 @@ function playAgain(){
 }
 		
 checker();
-playAgain();
+//playAgain();
 
 
 		// if (userInput.includes(userAnswer)){
@@ -58,9 +63,8 @@ playAgain();
 		// 	userInput.push(userAnswer);
 		// 	ScoreBoard.subtractTries();
 		// }
-	});
-}
-checker();
+	//});
+// checker();
 
 		
 
